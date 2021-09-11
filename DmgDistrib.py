@@ -165,12 +165,12 @@ class Character:
                 bonus = (1+self.Edmg+Bdmg)
         for i  in range (0,7):
 
-            rotation1 += acount[i]*hp*(bonus+as1[i])*(offmulti1+buff10[i]*ttds*0.48*self.baseATK+buff12[i]*1207*bennet)
+            rotation1 += acount[i]*hp*(bonus+as1[i])*(offmulti1+buff10[i]*ttds*0.48*self.baseATK+buff12[i]*1202*bennet)
         
         if self.weapon == "Kitain Spear":
-            rotation1 += (e * 2 * (bonus-0.952+0.045+0.015*self.R))*offmulti1+(e * 2 * (bonus-0.952+0.045+0.015*self.R))*(offmulti1+ttds*0.48*self.baseATK+1207*bennet)
+            rotation1 += (e * 2 * (bonus-0.952+0.045+0.015*self.R))*offmulti1+(e * 2 * (bonus-0.952+0.045+0.015*self.R))*(offmulti1+ttds*0.48*self.baseATK+1202*bennet)
         else:
-            rotation1 += (e * 2 * (bonus-0.952))*offmulti1+(e * 2 * (bonus-0.952))*(offmulti1+ttds*0.48*self.baseATK+1207*bennet)
+            rotation1 += (e * 2 * (bonus-0.952))*offmulti1+(e * 2 * (bonus-0.952))*(offmulti1+ttds*0.48*self.baseATK+1202*bennet)
         
         return  aux1 * rotation1 *CritMulti
 
@@ -220,6 +220,9 @@ def bestbuild(a,submax,cratecap,bennet,ttds):
     print("Stats: ",(a.baseATK*(a.dATK+1))+a.flatATK,"ATK")
     print("CR",a.CR*100)
     print("cdmg",(a.CDMG*100))
-    var = [a.weapon+" R"+str(a.R) , e[0][1],e[0][2],e[0][3],e[0][4],(a.baseATK*(a.dATK+1))+a.flatATK,a.CR,a.CDMG,max]
+    if (bennet or ttds):    
+        var = [a.weapon+" R"+str(a.R) , e[0][1],e[0][2],e[0][3],e[0][4],(a.baseATK*(a.dATK+1))+a.flatATK,(a.baseATK*(a.dATK+1))+a.flatATK+bennet*1207+ttds*0.48*a.baseATK,a.CR,a.CDMG,max]
+    else:
+        var = [a.weapon+" R"+str(a.R) , e[0][1],e[0][2],e[0][3],e[0][4],(a.baseATK*(a.dATK+1))+a.flatATK,a.CR,a.CDMG,max]
     return var
 result = bestbuild(a,36,0.8,0,0)
