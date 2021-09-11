@@ -114,16 +114,17 @@ def bestbuild(a,submax):
                                     if (a.CR+k*3.9/100)<=1:
                                         y = deepcopy(a)
                                         y.substat(i,j,k,l)
-                                        b1 = y.PerfectRotation(0.952,0.1,0,90,90,0,1)
-                                        if b1 > max:
-                                            max = b1
-                                            maxi = index
-                                                    
-                                        b2 = [index, i, j, k, l]
-                                        writer.writerow([index, i, j, k, l,b1])
-                                        
-                                        index += 1
-                                        holder.append([b2,b1])                        
+                                        if y.CR <= 0.8:
+                                            b1 = y.PerfectRotation(0.952,0.1,0,90,90,0,1)
+                                            if b1 > max:
+                                                max = b1
+                                                maxi = index
+                                                        
+                                            b2 = [index, i, j, k, l]
+                                            writer.writerow([index, i, j, k, l,b1])
+                                            
+                                            index += 1
+                                            holder.append([b2,b1])                        
     print("-----------------------------------------------")
     #print(holder)
     print("Best build of substats for single high plunge is: ")
