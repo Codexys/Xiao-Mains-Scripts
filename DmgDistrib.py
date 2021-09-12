@@ -171,8 +171,11 @@ class Character:
             rotation1 += (e * 2 * (bonus-0.952+0.045+0.015*self.R))*offmulti1+(e * 2 * (bonus-0.952+0.045+0.015*self.R))*(offmulti1+ttds*0.48*self.baseATK+1202*bennet)
         else:
             rotation1 += (e * 2 * (bonus-0.952))*offmulti1+(e * 2 * (bonus-0.952))*(offmulti1+ttds*0.48*self.baseATK+1202*bennet)
-        
-        return  aux1 * rotation1 *CritMulti
+        if (self.weapon == "Lithic 4 Liyue") and bennet:
+            #Come on, bennet is not from liyue
+            return 0
+        else:
+            return  aux1 * rotation1 *CritMulti
 
    
 a = Character(349,"PJWS",2,311,0.466+0.18, 0.242 , 0.5+0.622 , 0.616 , 1+6.48/100*3 )
@@ -181,6 +184,7 @@ def bestbuild(a,submax,cratecap,bennet,ttds):
     holder= []
     index = 0
     max = 0
+    maxi = 0
     header = ['index','flatAtk','ATK%','CritRate%','CritDmg%','Damage']
     with open ('data.csv','w',encoding='UTF8',newline='') as f:
         writer=csv.writer(f)
