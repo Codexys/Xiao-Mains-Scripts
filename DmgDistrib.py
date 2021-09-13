@@ -189,13 +189,13 @@ def bestbuild(a,submax,cratecap,bennet,ttds):
     with open ('data.csv','w',encoding='UTF8',newline='') as f:
         writer=csv.writer(f)
         writer.writerow(header)
-        for i in range(4,36):
-                for j in range (4,36):
-                    for k in range (5,36):
-                        for l in range (4,36):
+        for i in range(4,31):
+                for j in range (4,31):
+                    for k in range (5,31):
+                        for l in range (4,31):
 
                             if (i+j+k+l)==submax:
-                                if not((i>36) or (j>36) or (k>36) or (l>36)):
+                                if not((i>24) or (j>24) or (k>24) or (l>30)):
                                     if (a.CR+k*3.9/100)<=1:
                                         y = deepcopy(a)
                                         y.substat(i,j,k,l)
