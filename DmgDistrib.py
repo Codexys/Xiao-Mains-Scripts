@@ -145,9 +145,13 @@ class Character:
             resMiti = 1 - res + resShred
         aux1 =  defMiti * resMiti 
         if Average:
-            CritMulti = (1+self.CDMG*self.CR)
+            if self.CR >=1:
+                CritMulti = (1+self.CDMG)
+            else:
+                CritMulti = (1+self.CDMG*self.CR)
         else:
             CritMulti = (1+self.CDMG)
+            
         if bennet == 1 and self.weapon=="HomaBe":    
             offmulti1 =(self.baseATK * (1 + self.dATK)+ self.flatATK)- (12736 * (1+(0.15+0.05*self.R))+4780)*(1)/100
         else:
@@ -196,10 +200,10 @@ def bestbuild(a,submax,cratecap,bennet,ttds):
 
                             if (i+j+k+l)==submax:
                                 if not((i>24) or (j>24) or (k>24) or (l>30)):
-                                    if (a.CR+k*3.9/100)<=1:
+                                    if (a.CR+(k-1)*3.9/100)<=1:
                                         y = deepcopy(a)
                                         y.substat(i,j,k,l)
-                                        if y.CR <= cratecap:
+                                        if y.CR <= cratecap+3.9/100:
                                             b1 = y.PerfectRotation(0.952,0.1,0,90,90,0,1,ttds,bennet)
                                             if b1 > max:
                                                 max = b1
