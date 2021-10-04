@@ -2,6 +2,11 @@ from DmgDistrib import bestbuild
 from DmgDistrib import Character
 from copy import deepcopy
 import csv
+import os
+folderpth = str(os.path.realpath(os.getcwd())) + '\Results'
+if not os.path.exists(folderpth):
+    os.mkdir(folderpth)
+
 #Parameters
 bennet = 1
 ttds = 0
@@ -15,44 +20,16 @@ if bennet or ttds:
 else:    
     header = ['Weapon','flatAtk','ATK%','CritRate%','CritDmg%','ATK','Tot Cr%','Tot Cd%','Damage']
 
-with open ('Weapons45Subs.csv','w',encoding='UTF8',newline='') as f:
-        writer=csv.writer(f)
-        writer.writerow(header)    
-        for j in range (len(weapon)):
-            for i in range(1,6):
-                a = Character(349,weapon[j],i,311,0.466+0.18, 0.242 , 0.5+0.622 , 0.616 , 1+6.48/100*3 )
-                var = bestbuild(a,45,cratecap,bennet,ttds)
-                writer.writerow(var)
-with open ('Weapons35Subs.csv','w',encoding='UTF8',newline='') as f:
-        writer=csv.writer(f)
-        writer.writerow(header)    
-        for j in range (len(weapon)):
-            for i in range(1,6):
-                a = Character(349,weapon[j],i,311,0.466+0.18, 0.242 , 0.5+0.622 , 0.616 , 1+6.48/100*3 )
-                var = bestbuild(a,35,cratecap,bennet,ttds)
-                writer.writerow(var)            
-with open ('Weapons30Subs.csv','w',encoding='UTF8',newline='') as f:
-        writer=csv.writer(f)
-        writer.writerow(header)    
-        for j in range (len(weapon)):
-            for i in range(1,6):
-                a = Character(349,weapon[j],i,311,0.466+0.18, 0.242 , 0.5+0.622 , 0.616 , 1+6.48/100*3 )
-                var = bestbuild(a,30,cratecap,bennet,ttds)
-                writer.writerow(var)            
-with open ('Weapons25Subs.csv','w',encoding='UTF8',newline='') as f:
-        writer=csv.writer(f)
-        writer.writerow(header)    
-        for j in range (len(weapon)):
-            for i in range(1,6):
-                a = Character(349,weapon[j],i,311,0.466+0.18, 0.242 , 0.5+0.622 , 0.616 , 1+6.48/100*3 )
-                var = bestbuild(a,25,cratecap,bennet,ttds)
-                writer.writerow(var)                  
-with open ('Weapons20.csv','w',encoding='UTF8',newline='') as f:
-        writer=csv.writer(f)
-        writer.writerow(header)    
-        for j in range (len(weapon)):
-            for i in range(1,6):
-                a = Character(349,weapon[j],i,311,0.466+0.18, 0.242 , 0.5+0.622 , 0.616 , 1+6.48/100*3 )
-                var = bestbuild(a,20,cratecap,bennet,ttds)
-                writer.writerow(var)
-        
+subs = [20,25,30,35,40,42]
+for l in subs:
+    filepth = folderpth + '\Weapons' + str(l) + 'Subs.csv'
+    with open (filepth,'w',encoding='UTF8',newline='') as f:
+            writer=csv.writer(f)
+            writer.writerow(header)    
+            for j in range (len(weapon)):
+                for i in range(1,6):
+                    a = Character(349,weapon[j],i,311,0.466+0.18, 0.242 , 0.5+0.622 , 0.616 , 1+6.48/100*3 )
+                    var = bestbuild(a,l,cratecap,bennet,ttds)
+                    writer.writerow(var)
+    
+            
