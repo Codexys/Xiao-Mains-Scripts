@@ -36,7 +36,7 @@ class Character:
         elif weapon == "Grasscutter":
                 self.baseATK = baseATK + 608
                 self.ER = ER + 0.551
-                self.dATK =  dATK + (ER-1+0.25+0.05*R) * (0.21+0.07*R)/100
+                self.dATK =  dATK + (ER + 0.551 -1+0.25+0.05*R) * (0.21+0.07*R)
         elif weapon == "DM not Solo":
                 self.baseATK = baseATK + 454
                 self.CR  = CR + 0.368
@@ -182,7 +182,7 @@ class Character:
             return  aux1 * rotation1 *CritMulti
 
    
-a = Character(349,"PJWS",2,311,0.466+0.18, 0.242 , 0.5+0.622 , 0.616 , 1+6.48/100*3 )
+a = Character(349,"PJWS",2,311,0.466+0.18, 0.242 , 0.5+0.622 , 0.616 , (1 +  6.48/100*3) )
 def bestbuild(a,submax,cratecap,bennet,ttds):
     aux = 0
     holder= []

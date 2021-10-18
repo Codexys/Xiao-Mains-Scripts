@@ -8,8 +8,8 @@ if not os.path.exists(folderpth):
     os.mkdir(folderpth)
 
 #Parameters
-bennet = 1
-ttds = 0
+bennet = 0
+ttds = 1
 cratecap = 1
 #Stats
 a = Character(349,"PJWS",2,311,0.466+0.18, 0.242 , 0.5+0.622 , 0.616 , 1+6.48/100*3 )
